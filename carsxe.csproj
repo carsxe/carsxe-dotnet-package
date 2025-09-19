@@ -27,12 +27,19 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 
+    <!-- Copyright and release notes -->
+    <Copyright>Copyright (c) 2025 CarXE</Copyright>
+    <PackageReleaseNotes>Initial release of CarsXE .NET client</PackageReleaseNotes>
+
     <!-- Recommended: generate XML docs and include them in the package -->
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
 
     <!-- Recommended for deterministic builds -->
     <Deterministic>true</Deterministic>
 
+    <!-- Include symbols in the NuGet package -->
+    <IncludeSymbols>true</IncludeSymbols> 
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
 
   </PropertyGroup>
 
