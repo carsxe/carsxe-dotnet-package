@@ -28,8 +28,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
 
     <!-- Recommended: generate XML docs and include them in the package -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>1591</NoWarn>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
 
     <!-- Recommended for deterministic builds -->
     <Deterministic>true</Deterministic>
