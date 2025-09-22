@@ -26,7 +26,7 @@ To get started with the CarsXE API, follow these steps:
 3. **Import the CarsXE API into your code:**
 
    ```csharp
-   using CarsXE;
+   using carsxe;
    ```
 
 4. **Initialize the API with your API key:**
@@ -120,11 +120,11 @@ var intvin = carsxe.InternationalVinDecoder(new Dictionary<string, string> { { "
 **Example:**
 
 ```csharp
-var decodedPlate = carsxe.PlateDecoder(new Dictionary<string, string> 
-{ 
-    { "plate", "7XER187" }, 
-    { "state", "CA" }, 
-    { "country", "US" } 
+var decodedPlate = carsxe.PlateDecoder(new Dictionary<string, string>
+{
+    { "plate", "7XER187" },
+    { "state", "CA" },
+    { "country", "US" }
 }).Result;
 ```
 
@@ -187,11 +187,11 @@ var history = carsxe.History(new Dictionary<string, string> { { "vin", "WBAFR7C5
 **Example:**
 
 ```csharp
-var images = carsxe.Images(new Dictionary<string, string> 
-{ 
-    { "make", "BMW" }, 
-    { "model", "X5" }, 
-    { "year", "2019" } 
+var images = carsxe.Images(new Dictionary<string, string>
+{
+    { "make", "BMW" },
+    { "model", "X5" },
+    { "year", "2019" }
 }).Result;
 ```
 
@@ -266,11 +266,11 @@ var vinocr = carsxe.VinOcr("https://api.carsxe.com/img/apis/plate_recognition.JP
 **Example:**
 
 ```csharp
-var yymm = carsxe.YearMakeModel(new Dictionary<string, string> 
-{ 
-    { "year", "2012" }, 
-    { "make", "BMW" }, 
-    { "model", "5 Series" } 
+var yymm = carsxe.YearMakeModel(new Dictionary<string, string>
+{
+    { "year", "2012" },
+    { "make", "BMW" },
+    { "model", "5 Series" }
 }).Result;
 ```
 
@@ -302,7 +302,7 @@ For better performance and non-blocking operations, use async/await instead of .
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CarsXE;
+using carsxe;
 
 class Program
 {
