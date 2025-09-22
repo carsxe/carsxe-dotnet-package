@@ -58,7 +58,7 @@ namespace carsxe
             var dict = new Dictionary<string, string>(queryParams ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase)
             {
                 ["key"] = _apiKey,
-                ["source"] = "nuget"
+                ["source"] = "c#"
             };
 
             var query = BuildQueryString(dict);
@@ -81,7 +81,7 @@ namespace carsxe
         {
             var dict = new Dictionary<string, string>(queryParams ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase);
             dict["key"] = _apiKey;
-            dict["source"] = "nuget";
+            dict["source"] = "c#";
 
             var query = BuildQueryString(dict);
             var url = $"{_baseUrl.TrimEnd('/')}/{endpoint}";
