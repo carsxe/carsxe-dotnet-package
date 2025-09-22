@@ -1,6 +1,6 @@
 # 🚗 CarsXE API (.NET Package)
 
-[![NuGet version](https://img.shields.io/nuget/v/carsxe.svg?cacheSeconds=0)](https://www.nuget.org/packages/carsxe)
+[![NuGet version](https://img.shields.io/nuget/v/CarsXE.svg?cacheSeconds=0)](https://www.nuget.org/packages/CarsXE)
 
 **CarsXE** is a powerful and developer-friendly API that gives you instant access to a wide range of vehicle data. From VIN decoding and market value estimation to vehicle history, images, OBD code explanations, and plate recognition, CarsXE provides everything you need to build automotive applications at scale.
 
@@ -20,13 +20,13 @@ To get started with the CarsXE API, follow these steps:
    Run this command in your terminal:
 
    ```bash
-   dotnet add package carsxe
+   dotnet add package CarsXE
    ```
 
 3. **Import the CarsXE API into your code:**
 
    ```csharp
-   using carsxe;
+   using CarsXE;
    ```
 
 4. **Initialize the API with your API key:**
@@ -302,7 +302,7 @@ For better performance and non-blocking operations, use async/await instead of .
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using carsxe;
+using CarsXE;
 
 class Program
 {
