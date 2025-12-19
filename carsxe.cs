@@ -235,6 +235,15 @@ namespace carsxe
             return await GetAsync("v1/ymm", parameters).ConfigureAwait(false);
         }
 
+        // lien & theft check: GET /v1/lien-theft
+        // Required: vin
+        public async Task<JsonDocument> LienTheft(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("vin") && !string.IsNullOrWhiteSpace(parameters["vin"]), "vin"));
+            return await GetAsync("v1/lien-theft", parameters).ConfigureAwait(false);
+        }
+
         public async ValueTask DisposeAsync()
         {
             if (_disposeHttpClient)

@@ -294,6 +294,24 @@ var obdcode = carsxe.ObdCodesDecoder(new Dictionary<string, string> { { "code", 
 
 ---
 
+### `LienTheft` – Check active liens and theft records by VIN
+
+**Required:**
+
+- `vin`
+
+**Optional:**
+
+- None
+
+**Example:**
+
+```csharp
+var lienTheft = carsxe.LienTheft(new Dictionary<string, string> { { "vin", "2C3CDXFG1FH762860" } }).Result;
+```
+
+---
+
 ## Async/Await Usage (Recommended)
 
 For better performance and non-blocking operations, use async/await instead of .Result:
