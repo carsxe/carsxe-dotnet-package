@@ -237,7 +237,7 @@ namespace carsxe
 
         // lien & theft check: GET /v1/lien-theft
         // Required: vin
-        public async Task<JsonDocument> LienTheft(IDictionary<string, string> parameters)
+        public async Task<JsonDocument> LienAndTheft(IDictionary<string, string> parameters)
         {
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             Require((parameters.ContainsKey("vin") && !string.IsNullOrWhiteSpace(parameters["vin"]), "vin"));
