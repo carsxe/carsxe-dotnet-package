@@ -138,6 +138,8 @@ var decodedPlate = carsxe.PlateDecoder(new Dictionary<string, string>
 **Optional:**
 
 - `state`
+- `mileage`
+- `condition`
 
 **Example:**
 
