@@ -144,7 +144,13 @@ var decodedPlate = carsxe.PlateDecoder(new Dictionary<string, string>
 **Example:**
 
 ```csharp
-var marketvalue = carsxe.MarketValue(new Dictionary<string, string> { { "vin", "WBAFR7C57CC811956" } }).Result;
+var marketvalue = carsxe.MarketValue(new Dictionary<string, string>
+{
+    { "vin", "WBAFR7C57CC811956" },
+    { "mileage", "50000" },
+    { "condition", "clean" },
+    { "state", "CA" }
+}).Result;
 ```
 
 ---

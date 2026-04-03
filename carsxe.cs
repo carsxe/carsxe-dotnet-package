@@ -123,6 +123,7 @@ namespace carsxe
 
         // marketValue: GET /v2/marketvalue
         // Required: vin
+        // Optional: state (US state code), mileage (numeric string), condition (excellent|clean|average|rough)
         public async Task<JsonDocument> MarketValue(IDictionary<string, string> parameters)
         {
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
