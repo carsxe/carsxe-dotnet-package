@@ -129,30 +129,6 @@ var decodedPlate = carsxe.PlateDecoder(new Dictionary<string, string>
 
 ---
 
-### `UsPlateDecoder` – Decode a US license plate (plate, state)
-
-**Required:**
-
-- `plate`
-- `state`
-
-**Optional:**
-
-- `decodeVIN`
-
-**Example:**
-
-```csharp
-var usPlate = carsxe.UsPlateDecoder(new Dictionary<string, string>
-{
-    { "plate", "H37SFS" },
-    { "state", "NJ" },
-    { "decodeVIN", "true" }
-}).Result;
-```
-
----
-
 ### `MarketValue` – Estimate vehicle market value based on VIN
 
 **Required:**

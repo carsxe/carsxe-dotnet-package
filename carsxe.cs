@@ -349,17 +349,6 @@ namespace carsxe
             return await GetAsync("v1/ownership/zip", parameters).ConfigureAwait(false);
         }
 
-        // usPlateDecoder: GET /v1/us-platedecoder
-        // Required: plate, state
-        // Optional: decodeVIN
-        public async Task<JsonDocument> UsPlateDecoder(IDictionary<string, string> parameters)
-        {
-            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
-            Require((parameters.ContainsKey("plate") && !string.IsNullOrWhiteSpace(parameters["plate"]), "plate"),
-                    (parameters.ContainsKey("state") && !string.IsNullOrWhiteSpace(parameters["state"]), "state"));
-            return await GetAsync("v1/us-platedecoder", parameters).ConfigureAwait(false);
-        }
-
         public async ValueTask DisposeAsync()
         {
             if (_disposeHttpClient)
