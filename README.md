@@ -608,7 +608,7 @@ class Program
 ## Notes & Best Practices
 
 - **Parameter requirements:** Each endpoint requires specific parameters—see the Required/Optional fields above.
-- **Return values:** All responses are JsonDocument objects for easy access and manipulation using System.Text.Json.
+- **Return values:** Responses are JsonDocument objects for easy access and manipulation using System.Text.Json. `RecallsBatchDownload` is the exception and returns CSV text as a `string`.
 - **Error handling:** Use try/catch blocks to gracefully handle API errors.
 - **Async operations:** Use async/await for better performance instead of blocking with .Result.
 - **Resource management:** The CarsXE client implements IAsyncDisposable, so use `await using` or call DisposeAsync() when done.
