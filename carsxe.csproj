@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Version>1.4.0</Version>
+    <PackageId>CarsXE</PackageId>
+    <Authors>Omar-Walied,CarXE_Developer</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://api.carsxe.com/</PackageProjectUrl>
+    <Description>CarXE is an open-source .NET library easy-to-use API for vehicle data including specs, market value, license plate decoding, and more.</Description>
+    <PackageReleaseNotes>Add RecallsYmm, Recalls Batch, YmmOptions, and Ownership endpoints</PackageReleaseNotes>
+    <Copyright>Copyright (c) 2025 CarXE</Copyright>
+    <PackageTags>vehicle api data carsxe specs market-value license-plate decoding</PackageTags>
+    <RepositoryUrl>https://github.com/carsxe/carsxe-dotnet-package</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

@@ -222,6 +222,109 @@ var recalls = carsxe.Recalls(new Dictionary<string, string> { { "vin", "1C4JJXR6
 
 ---
 
+### `RecallsYmm` – Get safety recall data by year, make, and model
+
+**Required:**
+
+- `year`
+- `make`
+- `model`
+
+**Optional:**
+
+- None
+
+**Example:**
+
+```csharp
+var recallsYmm = carsxe.RecallsYmm(new Dictionary<string, string>
+{
+    { "year", "2026" },
+    { "make", "toyota" },
+    { "model", "corolla" }
+}).Result;
+```
+
+---
+
+### `RecallsBatchSubmit` – Submit up to 10,000 VINs for bulk recall checking
+
+**Required:**
+
+- at least one of `vins`, `csv`, or `csvUrl` in the request body
+
+**Optional:**
+
+- `webhookUrl`
+
+**Example:**
+
+```csharp
+var batch = carsxe.RecallsBatchSubmit(new
+{
+    vins = new[] { "1HGBH41JXMN109186", "5YJSA1E26HF000001", "1C4JJXR64PW696340" },
+    webhookUrl = "https://your-server.com/webhook"
+}).Result;
+```
+
+---
+
+### `RecallsBatchStatus` – Check the status of a recall batch
+
+**Required:**
+
+- `batchId`
+
+**Optional:**
+
+- None
+
+**Example:**
+
+```csharp
+var status = carsxe.RecallsBatchStatus(new Dictionary<string, string> { { "batchId", "brb_mnablbn7_wvbaqv" } }).Result;
+```
+
+---
+
+### `RecallsBatchResults` – Retrieve JSON results for a completed recall batch
+
+**Required:**
+
+- `batchId`
+
+**Optional:**
+
+- None
+
+**Example:**
+
+```csharp
+var results = carsxe.RecallsBatchResults(new Dictionary<string, string> { { "batchId", "brb_mnablbn7_wvbaqv" } }).Result;
+```
+
+---
+
+### `RecallsBatchDownload` – Download recall batch results as CSV
+
+**Required:**
+
+- `batchId`
+
+**Optional:**
+
+- None
+
+> **Note:** This method returns CSV text (`string`), not a `JsonDocument`.
+
+**Example:**
+
+```csharp
+var csv = carsxe.RecallsBatchDownload(new Dictionary<string, string> { { "batchId", "brb_mnablbn7_wvbaqv" } }).Result;
+```
+
+---
+
 ### `PlateImageRecognition` – Read & decode plates from images
 
 **Required:**
@@ -283,6 +386,36 @@ var yymm = carsxe.YearMakeModel(new Dictionary<string, string>
 
 ---
 
+### `YmmOptions` – List years, makes, models, variants, or trims for dropdowns
+
+**Required:**
+
+- None
+
+**Optional:**
+
+- `dimension` (`years` | `makes` | `models` | `trims` | `variants`)
+- `year`
+- `make`
+- `model`
+- `trim`
+
+**Example:**
+
+```csharp
+var years = carsxe.YmmOptions().Result;
+var makes = carsxe.YmmOptions(new Dictionary<string, string> { { "year", "2026" } }).Result;
+var models = carsxe.YmmOptions(new Dictionary<string, string> { { "make", "Toyota" } }).Result;
+var variants = carsxe.YmmOptions(new Dictionary<string, string>
+{
+    { "year", "2026" },
+    { "make", "Toyota" },
+    { "model", "Tacoma" }
+}).Result;
+```
+
+---
+
 ### `ObdCodesDecoder` – Decode OBD error/diagnostic codes
 
 **Required:**
@@ -315,6 +448,105 @@ var obdcode = carsxe.ObdCodesDecoder(new Dictionary<string, string> { { "code", 
 
 ```csharp
 var lienAndTheft = carsxe.LienAndTheft(new Dictionary<string, string> { { "vin", "2C3CDXFG1FH762860" } }).Result;
+```
+
+---
+
+### `OwnershipVin` – Look up registered owner(s) by VIN
+
+**Required:**
+
+- `vin`
+
+**Optional:**
+
+- `include` (comma-separated subset of `demographics,emails,phones,vehicle_history`)
+
+**Example:**
+
+```csharp
+var owners = carsxe.OwnershipVin(new Dictionary<string, string> { { "vin", "1FT8X3BT0BEA61538" } }).Result;
+```
+
+---
+
+### `OwnershipPerson` – Resolve contact details by name and address
+
+**Required:**
+
+- `first_name`
+- `last_name`
+- `address`
+- `zip`
+
+**Optional:**
+
+- `include`
+
+**Example:**
+
+```csharp
+var person = carsxe.OwnershipPerson(new Dictionary<string, string>
+{
+    { "first_name", "John" },
+    { "last_name", "Sample" },
+    { "address", "123 Example St" },
+    { "zip", "90210" }
+}).Result;
+```
+
+---
+
+### `OwnershipAddress` – Find residents at a street address
+
+**Required:**
+
+- `address`
+- `zip`
+
+**Optional:**
+
+- `include`
+- `variant` (legacy alias)
+
+**Example:**
+
+```csharp
+var residents = carsxe.OwnershipAddress(new Dictionary<string, string>
+{
+    { "address", "123 Example St" },
+    { "zip", "90210" }
+}).Result;
+```
+
+---
+
+### `OwnershipZip` – Search people in a ZIP code with optional filters
+
+**Required:**
+
+- `zip`
+
+**Optional:**
+
+- `gender`
+- `min_age`
+- `max_age`
+- `income`
+- `page`
+- `limit`
+- `include`
+- `variant` (legacy alias)
+
+**Example:**
+
+```csharp
+var zipSearch = carsxe.OwnershipZip(new Dictionary<string, string>
+{
+    { "zip", "00000" },
+    { "gender", "f" },
+    { "min_age", "45" }
+}).Result;
 ```
 
 ---
@@ -352,7 +584,7 @@ class Program
 ## Notes & Best Practices
 
 - **Parameter requirements:** Each endpoint requires specific parameters—see the Required/Optional fields above.
-- **Return values:** All responses are JsonDocument objects for easy access and manipulation using System.Text.Json.
+- **Return values:** Responses are JsonDocument objects for easy access and manipulation using System.Text.Json. `RecallsBatchDownload` is the exception and returns CSV text as a `string`.
 - **Error handling:** Use try/catch blocks to gracefully handle API errors.
 - **Async operations:** Use async/await for better performance instead of blocking with .Result.
 - **Resource management:** The CarsXE client implements IAsyncDisposable, so use `await using` or call DisposeAsync() when done.

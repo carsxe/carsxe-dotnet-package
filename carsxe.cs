@@ -54,7 +54,12 @@ namespace carsxe
 
         private async Task<JsonDocument> GetAsync(string endpoint, IDictionary<string, string> queryParams)
         {
-            // add auth + source
+            var content = await GetRawAsync(endpoint, queryParams).ConfigureAwait(false);
+            return JsonDocument.Parse(content);
+        }
+
+        private async Task<string> GetRawAsync(string endpoint, IDictionary<string, string> queryParams)
+        {
             var dict = new Dictionary<string, string>(queryParams ?? new Dictionary<string, string>(), StringComparer.OrdinalIgnoreCase)
             {
                 ["key"] = _apiKey,
@@ -74,7 +79,7 @@ namespace carsxe
             {
                 throw new HttpRequestException($"Request to {url} failed with {(int)res.StatusCode}: {res.ReasonPhrase}. Body: {content}");
             }
-            return JsonDocument.Parse(content);
+            return content;
         }
 
         private async Task<JsonDocument> PostJsonAsync(string endpoint, object body, IDictionary<string, string>? queryParams = null)
@@ -243,6 +248,105 @@ namespace carsxe
             if (parameters == null) throw new ArgumentNullException(nameof(parameters));
             Require((parameters.ContainsKey("vin") && !string.IsNullOrWhiteSpace(parameters["vin"]), "vin"));
             return await GetAsync("v1/lien-theft", parameters).ConfigureAwait(false);
+        }
+
+        // recallsYmm: GET /v1/recalls-ymm
+        // Required: year, make, model
+        public async Task<JsonDocument> RecallsYmm(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("year") && !string.IsNullOrWhiteSpace(parameters["year"]), "year"),
+                    (parameters.ContainsKey("make") && !string.IsNullOrWhiteSpace(parameters["make"]), "make"),
+                    (parameters.ContainsKey("model") && !string.IsNullOrWhiteSpace(parameters["model"]), "model"));
+            return await GetAsync("v1/recalls-ymm", parameters).ConfigureAwait(false);
+        }
+
+        // recallsBatchSubmit: POST /v1/recalls-batch/submit
+        // Required: at least one of vins, csv, csvUrl
+        // Optional: webhookUrl
+        public async Task<JsonDocument> RecallsBatchSubmit(object body)
+        {
+            if (body == null) throw new ArgumentNullException(nameof(body));
+            return await PostJsonAsync("v1/recalls-batch/submit", body).ConfigureAwait(false);
+        }
+
+        // recallsBatchStatus: GET /v1/recalls-batch/status
+        // Required: batchId
+        public async Task<JsonDocument> RecallsBatchStatus(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("batchId") && !string.IsNullOrWhiteSpace(parameters["batchId"]), "batchId"));
+            return await GetAsync("v1/recalls-batch/status", parameters).ConfigureAwait(false);
+        }
+
+        // recallsBatchResults: GET /v1/recalls-batch/results
+        // Required: batchId
+        public async Task<JsonDocument> RecallsBatchResults(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("batchId") && !string.IsNullOrWhiteSpace(parameters["batchId"]), "batchId"));
+            return await GetAsync("v1/recalls-batch/results", parameters).ConfigureAwait(false);
+        }
+
+        // recallsBatchDownload: GET /v1/recalls-batch/download
+        // Required: batchId
+        // Returns CSV text (not JSON)
+        public async Task<string> RecallsBatchDownload(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("batchId") && !string.IsNullOrWhiteSpace(parameters["batchId"]), "batchId"));
+            return await GetRawAsync("v1/recalls-batch/download", parameters).ConfigureAwait(false);
+        }
+
+        // ymmOptions: GET /v1/ymm-options
+        // Optional: dimension, year, make, model, trim
+        public async Task<JsonDocument> YmmOptions(IDictionary<string, string>? parameters = null)
+        {
+            return await GetAsync("v1/ymm-options", parameters ?? new Dictionary<string, string>()).ConfigureAwait(false);
+        }
+
+        // ownershipVin: GET /v1/ownership/vin
+        // Required: vin
+        // Optional: include
+        public async Task<JsonDocument> OwnershipVin(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("vin") && !string.IsNullOrWhiteSpace(parameters["vin"]), "vin"));
+            return await GetAsync("v1/ownership/vin", parameters).ConfigureAwait(false);
+        }
+
+        // ownershipPerson: GET /v1/ownership/person
+        // Required: first_name, last_name, address, zip
+        // Optional: include
+        public async Task<JsonDocument> OwnershipPerson(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("first_name") && !string.IsNullOrWhiteSpace(parameters["first_name"]), "first_name"),
+                    (parameters.ContainsKey("last_name") && !string.IsNullOrWhiteSpace(parameters["last_name"]), "last_name"),
+                    (parameters.ContainsKey("address") && !string.IsNullOrWhiteSpace(parameters["address"]), "address"),
+                    (parameters.ContainsKey("zip") && !string.IsNullOrWhiteSpace(parameters["zip"]), "zip"));
+            return await GetAsync("v1/ownership/person", parameters).ConfigureAwait(false);
+        }
+
+        // ownershipAddress: GET /v1/ownership/address
+        // Required: address, zip
+        // Optional: include, variant
+        public async Task<JsonDocument> OwnershipAddress(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("address") && !string.IsNullOrWhiteSpace(parameters["address"]), "address"),
+                    (parameters.ContainsKey("zip") && !string.IsNullOrWhiteSpace(parameters["zip"]), "zip"));
+            return await GetAsync("v1/ownership/address", parameters).ConfigureAwait(false);
+        }
+
+        // ownershipZip: GET /v1/ownership/zip
+        // Required: zip
+        // Optional: gender, min_age, max_age, income, page, limit, include, variant
+        public async Task<JsonDocument> OwnershipZip(IDictionary<string, string> parameters)
+        {
+            if (parameters == null) throw new ArgumentNullException(nameof(parameters));
+            Require((parameters.ContainsKey("zip") && !string.IsNullOrWhiteSpace(parameters["zip"]), "zip"));
+            return await GetAsync("v1/ownership/zip", parameters).ConfigureAwait(false);
         }
 
         public async ValueTask DisposeAsync()
