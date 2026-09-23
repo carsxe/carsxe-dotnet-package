@@ -10,7 +10,7 @@
     <Authors>Omar-Walied,CarXE_Developer</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://api.carsxe.com/</PackageProjectUrl>
+    <PackageProjectUrl>https://carsxe.com</PackageProjectUrl>
     <Description>CarXE is an open-source .NET library easy-to-use API for vehicle data including specs, market value, license plate decoding, and more.</Description>
     <PackageReleaseNotes>Add RecallsYmm, Recalls Batch, YmmOptions, and Ownership endpoints</PackageReleaseNotes>
     <Copyright>Copyright (c) 2025 CarXE</Copyright>
