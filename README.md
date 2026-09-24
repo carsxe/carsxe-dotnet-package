@@ -2,11 +2,11 @@
 
 [![NuGet version](https://img.shields.io/nuget/v/CarsXE.svg?cacheSeconds=0)](https://www.nuget.org/packages/CarsXE)
 
-**CarsXE** is a powerful and developer-friendly API that gives you instant access to a wide range of vehicle data. From VIN decoding and market value estimation to vehicle history, images, OBD code explanations, and plate recognition, CarsXE provides everything you need to build automotive applications at scale.
+**CarsXE** is a powerful and developer-friendly API that gives you instant access to a wide range of vehicle data. From [VIN decoding](https://carsxe.com/vehicle-specifications) and [market value](https://carsxe.com/vehicle-market-value) estimation to [vehicle history](https://carsxe.com/vehicle-history), [images](https://carsxe.com/vehicle-images), OBD code explanations, and [plate recognition](https://carsxe.com/vehicle-plate-decoder), CarsXE provides everything you need to build automotive applications at scale.
 
-🌐 **Website:** [https://api.carsxe.com](https://api.carsxe.com)  
+🌐 **Website:** [https://carsxe.com](https://carsxe.com)  
 📄 **Docs:** [https://api.carsxe.com/docs](https://api.carsxe.com/docs)  
-📦 **All Products:** [https://api.carsxe.com/all-products](https://api.carsxe.com/all-products)
+📦 **Products:** [History](https://carsxe.com/vehicle-history) · [Plate decoder](https://carsxe.com/vehicle-plate-decoder) · [Specs](https://carsxe.com/vehicle-specifications) · [International VIN](https://carsxe.com/international-vin-decoder) · [Images](https://carsxe.com/vehicle-images) · [Recalls](https://carsxe.com/vehicle-recalls) · [Market value](https://carsxe.com/vehicle-market-value)
 
 To get started with the CarsXE API, follow these steps:
 
@@ -60,7 +60,7 @@ catch (Exception ex)
 
 The CarsXE API provides the following endpoint methods:
 
-### `Specs` – Decode VIN & get full vehicle specifications
+### `Specs` – Decode VIN & get full [vehicle specifications](https://carsxe.com/vehicle-specifications)
 
 **Required:**
 
@@ -79,7 +79,7 @@ var vehicle = carsxe.Specs(new Dictionary<string, string> { { "vin", "WBAFR7C57C
 
 ---
 
-### `InternationalVinDecoder` – Decode VIN with worldwide support
+### `InternationalVinDecoder` – Decode VIN with [worldwide support](https://carsxe.com/international-vin-decoder)
 
 **Required:**
 
@@ -97,7 +97,7 @@ var intvin = carsxe.InternationalVinDecoder(new Dictionary<string, string> { { "
 
 ---
 
-### `PlateDecoder` – Decode license plate info (plate, country)
+### `PlateDecoder` – Decode [license plate](https://carsxe.com/vehicle-plate-decoder) info (plate, country)
 
 **Required:**
 
@@ -129,7 +129,7 @@ var decodedPlate = carsxe.PlateDecoder(new Dictionary<string, string>
 
 ---
 
-### `MarketValue` – Estimate vehicle market value based on VIN
+### `MarketValue` – Estimate [vehicle market value](https://carsxe.com/vehicle-market-value) based on VIN
 
 **Required:**
 
@@ -155,7 +155,7 @@ var marketvalue = carsxe.MarketValue(new Dictionary<string, string>
 
 ---
 
-### `History` – Retrieve vehicle history
+### `History` – Retrieve [vehicle history](https://carsxe.com/vehicle-history)
 
 **Required:**
 
@@ -173,7 +173,7 @@ var history = carsxe.History(new Dictionary<string, string> { { "vin", "WBAFR7C5
 
 ---
 
-### `Images` – Fetch images by make, model, year, trim
+### `Images` – Fetch [images](https://carsxe.com/vehicle-images) by make, model, year, trim
 
 **Required:**
 
@@ -204,7 +204,7 @@ var images = carsxe.Images(new Dictionary<string, string>
 
 ---
 
-### `Recalls` – Get safety recall data for a VIN
+### `Recalls` – Get [safety recall](https://carsxe.com/vehicle-recalls) data for a VIN
 
 **Required:**
 
@@ -222,7 +222,7 @@ var recalls = carsxe.Recalls(new Dictionary<string, string> { { "vin", "1C4JJXR6
 
 ---
 
-### `RecallsYmm` – Get safety recall data by year, make, and model
+### `RecallsYmm` – Get [safety recall](https://carsxe.com/vehicle-recalls) data by year, make, and model
 
 **Required:**
 
@@ -247,7 +247,7 @@ var recallsYmm = carsxe.RecallsYmm(new Dictionary<string, string>
 
 ---
 
-### `RecallsBatchSubmit` – Submit up to 10,000 VINs for bulk recall checking
+### `RecallsBatchSubmit` – Submit up to 10,000 VINs for bulk [recall](https://carsxe.com/vehicle-recalls) checking
 
 **Required:**
 
@@ -269,7 +269,7 @@ var batch = carsxe.RecallsBatchSubmit(new
 
 ---
 
-### `RecallsBatchStatus` – Check the status of a recall batch
+### `RecallsBatchStatus` – Check the status of a [recall](https://carsxe.com/vehicle-recalls) batch
 
 **Required:**
 
@@ -287,7 +287,7 @@ var status = carsxe.RecallsBatchStatus(new Dictionary<string, string> { { "batch
 
 ---
 
-### `RecallsBatchResults` – Retrieve JSON results for a completed recall batch
+### `RecallsBatchResults` – Retrieve JSON results for a completed [recall](https://carsxe.com/vehicle-recalls) batch
 
 **Required:**
 
@@ -305,7 +305,7 @@ var results = carsxe.RecallsBatchResults(new Dictionary<string, string> { { "bat
 
 ---
 
-### `RecallsBatchDownload` – Download recall batch results as CSV
+### `RecallsBatchDownload` – Download [recall](https://carsxe.com/vehicle-recalls) batch results as CSV
 
 **Required:**
 
@@ -325,7 +325,7 @@ var csv = carsxe.RecallsBatchDownload(new Dictionary<string, string> { { "batchI
 
 ---
 
-### `PlateImageRecognition` – Read & decode plates from images
+### `PlateImageRecognition` – Read & decode [plates](https://carsxe.com/vehicle-plate-decoder) from images
 
 **Required:**
 
@@ -588,10 +588,10 @@ class Program
 - **Error handling:** Use try/catch blocks to gracefully handle API errors.
 - **Async operations:** Use async/await for better performance instead of blocking with .Result.
 - **Resource management:** The CarsXE client implements IAsyncDisposable, so use `await using` or call DisposeAsync() when done.
-- **More info:** For advanced usage and full details, visit the [official API documentation](https://api.carsxe.com/docs).
+- **More info:** For advanced usage and full details, visit the [official API documentation](https://api.carsxe.com/docs). Product pages live on [carsxe.com](https://carsxe.com).
 
 ---
 
 ## Overall
 
-CarsXE API provides a wide range of powerful, easy-to-use tools for accessing and integrating vehicle data into your .NET applications and services. Whether you're a developer or a business owner, you can quickly get the information you need to take your projects to the next level—without hassle or inconvenience.
+[CarsXE](https://carsxe.com) API provides a wide range of powerful, easy-to-use tools for accessing and integrating vehicle data into your .NET applications and services. Whether you're a developer or a business owner, you can quickly get the information you need to take your projects to the next level—without hassle or inconvenience.
