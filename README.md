@@ -337,8 +337,10 @@ var csv = carsxe.RecallsBatchDownload(new Dictionary<string, string> { { "batchI
 
 **Example:**
 
+<img src="https://imagedelivery.net/moyiiSImjJPI_EZVxNMBBw/f49aed53-d736-4370-f3f4-97418841c800/public" alt="Sample license plate" width="240">
+
 ```csharp
-var plateimg = carsxe.PlateImageRecognition("https://api.carsxe.com/img/apis/plate_recognition.JPG").Result;
+var plateimg = carsxe.PlateImageRecognition("https://imagedelivery.net/moyiiSImjJPI_EZVxNMBBw/f49aed53-d736-4370-f3f4-97418841c800/public").Result;
 ```
 
 ---
@@ -356,7 +358,7 @@ var plateimg = carsxe.PlateImageRecognition("https://api.carsxe.com/img/apis/pla
 **Example:**
 
 ```csharp
-var vinocr = carsxe.VinOcr("https://api.carsxe.com/img/apis/plate_recognition.JPG").Result;
+var vinocr = carsxe.VinOcr("https://imagedelivery.net/moyiiSImjJPI_EZVxNMBBw/f49aed53-d736-4370-f3f4-97418841c800/public").Result;
 ```
 
 ---
